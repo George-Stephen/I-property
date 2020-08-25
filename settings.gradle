@@ -1,2 +1,4 @@
+include ':room'
+include ':services'
 include ':app'
 rootProject.name = "I-property"
