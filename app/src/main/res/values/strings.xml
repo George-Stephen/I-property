@@ -5,4 +5,5 @@
     <string name="search">Search</string>
     <string name="latest">Latest</string>
     <string name="contact">Contact us</string>
+    <string name="title_activity_location">Map</string>
 </resources>
