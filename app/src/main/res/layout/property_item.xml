@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="170dp"
+    xmlns:CardView="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    CardView:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/property_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/hotstep_holdings"/>
+        <TextView
+            android:id="@+id/property_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property_name"
+            android:textColor="@color/colorText"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/property_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property_size"
+            android:textColor="@color/colorText"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/property_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property_location"
+            android:textColor="@color/colorText"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
