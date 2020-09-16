@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.LoginText) TextView mLoginText;
     @BindView(R.id.RegisterName) EditText mUsername;
+    @BindView(R.id.RegisterPhone) EditText mPhone;
     @BindView(R.id.RegisterEmail) EditText mEmail;
     @BindView(R.id.RegisterPassword) EditText mPassword;
     @BindView(R.id.RegisterButton) Button mRegisterButton;
@@ -66,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void createUser(){
         Username = mUsername.getText().toString();
+        String phone = mPhone.getText().toString();
          String email = mEmail.getText().toString();
          String password = mPassword.getText().toString();
          boolean validUsername = isValidName(Username);
