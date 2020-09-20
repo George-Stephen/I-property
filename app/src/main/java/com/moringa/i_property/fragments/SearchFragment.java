@@ -69,17 +69,21 @@ public class SearchFragment extends Fragment {
                         @Override
                         public void onResponse(@NonNull Call<List<Property>> call, @NonNull Response<List<Property>> response) {
                             if (response.isSuccessful()){
+                                showProgressBar();
                                 propertyList = response.body();
                                 adapter = new SearchAdapter(propertyList,getContext());
                                 recyclerView.setAdapter(adapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                                showResults();
                             }else{
+                                showProgressBar();
                                 showUnsuccessfulMessage(search);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<List<Property>> call, Throwable t) {
+                            showProgressBar();
                             showFailureMessage();
                         }
                     });
@@ -96,10 +100,12 @@ public class SearchFragment extends Fragment {
         });
         return  view;
     }
-
+    void showProgressBar(){
+        mSearch_progress.setVisibility(View.VISIBLE);
+    }
     void showResults(){
         mSearch_progress.setVisibility(View.GONE);
-        mSearchView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
     void showFailureMessage(){
         mSearch_progress.setVisibility(View.GONE);

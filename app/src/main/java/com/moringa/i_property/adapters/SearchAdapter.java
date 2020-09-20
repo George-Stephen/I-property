@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringa.i_property.R;
-import com.moringa.services.Constants;
 import com.moringa.services.objects.Property;
 import com.squareup.picasso.Picasso;
 
@@ -55,12 +54,13 @@ public class SearchAdapter  extends RecyclerView.Adapter<SearchAdapter.SearchVie
         @BindView(R.id.search_image) ImageView mSearchImage;
         @BindView(R.id.search_location) TextView mSearchLocation;
         @BindView(R.id.search_price) TextView mSearchPrice;
+
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
         void bindSearch(Property property){
-            Picasso.get().load("https://salemrest.herokuapp.com" + property.getImage()).into(mSearchImage);
+            Picasso.get().load( property.getImage()).into(mSearchImage);
             mSearchName.setText(property.getName());
             mSearchLocation.setText(property.getLocation());
             mSearchPrice.setText(property.getPrice());
