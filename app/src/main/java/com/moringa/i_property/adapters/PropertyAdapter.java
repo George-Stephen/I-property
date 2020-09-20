@@ -1,6 +1,7 @@
 package com.moringa.i_property.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.moringa.i_property.R;
+import com.moringa.i_property.ui.MapsActivity;
 import com.moringa.services.objects.Property;
 import com.squareup.picasso.Picasso;
-
-import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -61,20 +62,30 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             @BindView(R.id.property_name) TextView mPropertyName;
             @BindView(R.id.property_image) ImageView mPropertyImage;
             @BindView(R.id.property_location) TextView mPropertyLocation;
-            @BindView(R.id.property_description) TextView mPropertyDescription;
             @BindView(R.id.property_price) TextView mPropertyPrice;
+            @BindView(R.id.property_description) TextView mPropertyDescription;
+            @BindView(R.id.action_button) FloatingActionButton mActionButton;
             Context context;
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
+            context = itemView.getContext();
             ButterKnife.bind(this,itemView);
         }
 
-        private void bindProperty(Property property){
+        private void bindProperty(final Property property){
             Picasso.get().load("https://salemrest.herokuapp.com" + property.getImage()).into(mPropertyImage);
             mPropertyName.setText(property.getName());
             mPropertyLocation.setText(property.getLocation());
             mPropertyDescription.setText(property.getDescription());
             mPropertyPrice.setText(property.getPrice());
+            mActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,MapsActivity.class);
+                    intent.putExtra("location",property.getName());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
