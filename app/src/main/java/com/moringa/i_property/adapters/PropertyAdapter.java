@@ -64,7 +64,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             @BindView(R.id.property_location) TextView mPropertyLocation;
             @BindView(R.id.property_price) TextView mPropertyPrice;
             @BindView(R.id.property_description) TextView mPropertyDescription;
-            @BindView(R.id.action_button) FloatingActionButton mActionButton;
             Context context;
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,19 +72,11 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         }
 
         private void bindProperty(final Property property){
-            Picasso.get().load("https://salemrest.herokuapp.com" + property.getImage()).into(mPropertyImage);
+            Picasso.get().load("https://sallemrest.herokuapp.com" + property.getImage()).into(mPropertyImage);
             mPropertyName.setText(property.getName());
             mPropertyLocation.setText(property.getLocation());
             mPropertyDescription.setText(property.getDescription());
             mPropertyPrice.setText(property.getPrice());
-            mActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context,MapsActivity.class);
-                    intent.putExtra("location",property.getName());
-                    context.startActivity(intent);
-                }
-            });
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.moringa.i_property.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.collect.Maps;
 import com.moringa.i_property.R;
+import com.moringa.i_property.ui.MapsActivity;
 import com.moringa.services.objects.Property;
 import com.squareup.picasso.Picasso;
 
@@ -54,12 +58,13 @@ public class SearchAdapter  extends RecyclerView.Adapter<SearchAdapter.SearchVie
         @BindView(R.id.search_image) ImageView mSearchImage;
         @BindView(R.id.search_location) TextView mSearchLocation;
         @BindView(R.id.search_price) TextView mSearchPrice;
-
+        Context context;
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
+            context = itemView.getContext();
             ButterKnife.bind(this,itemView);
         }
-        void bindSearch(Property property){
+        void bindSearch(final Property property){
             Picasso.get().load( property.getImage()).into(mSearchImage);
             mSearchName.setText(property.getName());
             mSearchLocation.setText(property.getLocation());

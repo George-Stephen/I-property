@@ -6,24 +6,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class Property {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("price")
+    @Expose
+    private String price;
     @SerializedName("location")
     @Expose
     private String location;
     @SerializedName("image")
     @Expose
     private String image;
-    @SerializedName("price")
-    @Expose
-    private String price;
-    @SerializedName("description")
-    @Expose
-    private String description;
 
     /**
      * No args constructor for use in serialization
@@ -39,24 +36,14 @@ public class Property {
      * @param name
      * @param description
      * @param location
-     * @param id
      */
-    public Property(Integer id, String name, String location, String image, String price, String description) {
+    public Property(String name, String description, String price, String location, String image) {
         super();
-        this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
         this.location = location;
         this.image = image;
-        this.price = price;
-        this.description = description;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -65,6 +52,22 @@ public class Property {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getLocation() {
@@ -81,22 +84,6 @@ public class Property {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 }

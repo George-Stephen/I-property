@@ -2,6 +2,7 @@ package com.moringa.i_property.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.moringa.i_property.adapters.PropertyAdapter;
 import com.moringa.services.PropertyApi;
 import com.moringa.services.PropertyService;
 import com.moringa.services.objects.Property;
+import com.moringa.services.objects.PropertyResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,12 +64,12 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, view);
         PropertyApi client = PropertyService.getUser();
-        Call<List<Property>> call = client.getProperties();
-        call.enqueue(new Callback<List<Property>>() {
+        Call<PropertyResponse> call = client.getProperties();
+        call.enqueue(new Callback<PropertyResponse>() {
             @Override
-            public void onResponse(Call<List<Property>> call, Response<List<Property>> response) {
+            public void onResponse(Call<PropertyResponse> call, @NonNull Response<PropertyResponse> response) {
                 if (response.isSuccessful()) {
-                    propertyList = response.body();
+                    propertyList = response.body().getProperties();
                     adapter = new PropertyAdapter(propertyList, getContext());
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -76,7 +78,7 @@ public class DashboardFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Property>> call, Throwable t) {
+            public void onFailure(Call<PropertyResponse> call, Throwable t) {
                 showErrorMessage();
             }
         });
